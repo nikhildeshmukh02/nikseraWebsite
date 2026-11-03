@@ -5,14 +5,12 @@ Static site for niksera.com. No build step: everything Cloudflare serves lives i
 ## Edit content
 Open `public/index.html` and change the text. The contact form posts to Salesforce Web-to-Lead (org ID `00Dfj00000lurRa`).
 
-## Deploy on Cloudflare Pages
-1. Push this repo to GitHub.
-2. Cloudflare Dashboard > Workers & Pages > Create > Pages > Connect to Git, then pick `niksera-website`.
-3. Framework preset: None. Build command: leave empty. Build output directory: `public`.
-4. Save and Deploy. Every push to `main` redeploys automatically; pull requests get preview URLs.
+## Deploy on Cloudflare
+The project deploys as a Cloudflare Worker with static assets (see `wrangler.jsonc`). Connect the GitHub repo in Workers & Pages with the deploy command `npx wrangler deploy` and no build command. Every push to `main` redeploys.
 
 ## Custom domain
-Pages project > Custom domains > Set up a domain > `niksera.com`, then add `www.niksera.com`. HTTPS is automatic. `public/_redirects` sends www to the apex domain.
+Worker > Settings > Domains & Routes > Add custom domain: `niksera.com`, then `www.niksera.com`. HTTPS is automatic.
+Redirect www to the apex: Cloudflare Dashboard > Rules > Redirect Rules (a `_redirects` file cannot hold absolute URLs on Workers).
 
 ## Analytics (optional)
 Cloudflare Dashboard > Web Analytics > add `niksera.com`, then enable automatic setup for the Pages project.

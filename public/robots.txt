@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://niksera.com/sitemap.xml
